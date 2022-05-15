@@ -1,0 +1,11 @@
+project: zstd-rs
+target: zstd-rs
+
+image: ghcr.io/ebell495/zstd-rs:latest
+duration: 300
+
+cmds:
+    - cmd: ./interop
+      libfuzzer: true
+    - cmd: ./decode
+      libfuzzer: true
