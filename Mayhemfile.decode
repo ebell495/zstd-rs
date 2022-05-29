@@ -1,9 +1,6 @@
 project: zstd-rs
 target: decode
 
-image: ghcr.io/ebell495/zstd-rs:latest
-duration: 300
-
 cmds:
     - cmd: ./decode
       libfuzzer: true
