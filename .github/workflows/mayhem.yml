@@ -8,6 +8,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  INTEROP: Mayhemfile.interop
+  DECODE: Mayhemfile.decode
 
 jobs:
   build:
@@ -55,14 +57,14 @@ jobs:
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --duration 300 --file Mayhemfile.interop
+          args: --image ${{ steps.meta.outputs.tags }} --duration 300 --file ${{ env.INTEROP }}
           sarif-output: sarif
 
       - name: Start analysis on decode
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --duration 300 --file Mayhemfile.decode
+          args: --image ${{ steps.meta.outputs.tags }} --duration 300 --file ${{ env.DECODE }}
           sarif-output: sarif
 
       - name: Upload SARIF file(s)
